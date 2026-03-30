@@ -1,0 +1,49 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/chat_forum?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:121298}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jackson:
+    default-property-inclusion: non_null
+    time-zone: Asia/Shanghai
+  jpa:
+    open-in-view: false
+  sql:
+    init:
+      mode: never
+
+logging:
+  level:
+    root: info
+    org.springframework.jdbc.core: debug
+
+forum:
+  auth:
+    secret: ${FORUM_AUTH_SECRET:chat-forum-demo-secret-change-me}
+    expires-days: 30
+  exp:
+    sign-in: 5
+    create-post: 10
+    create-comment: 5
+    create-reply: 5
+    post-pinned: 20
+    post-featured: 50
+  coin:
+    sign-in: 5
+  # SCNet OpenAI 兼容模型 API，见 https://www.scnet.cn/ac/openapi/doc/2.0/moduleapi/tutorial/apicall.html
+  llm:
+    # 为 true 时需配置密钥。支持（按优先级）：FORUM_LLM_API_KEY → LLM_API_KEY → SCNET_API_KEY
+    # 若已设 Windows 用户变量仍 401：多半是 Cursor/IDE 启动 Java 时未继承环境变量，请用 run-dev.ps1 或在运行配置里显式添加变量
+    enabled: true
+    api-key: ${FORUM_LLM_API_KEY:${LLM_API_KEY:${SCNET_API_KEY:}}}
+    # 不要写 .../v1，OpenAI Java SDK 会自动追加 /v1
+    base-url: https://ark.cn-beijing.volces.com/api/v3
+    model: ep-20260328213827-8nnw9
+    connect-timeout: 15s
+    read-timeout: 90s
+    # true=调用模型时强制不走系统/JVM 代理（curl 能通但 Java 报 SocksSocketImpl Connect timed out 时可试）
+    direct-connection: false

@@ -1,0 +1,17 @@
+# 复制本文件为 application-local.yml，填入真实 API Key，并启用 profile：local
+# 命令行：mvn spring-boot:run -Dspring-boot.run.profiles=local
+# 或在 IDE Run Configuration 里 Active profiles 填：local
+#
+# 若出现「401」：多为 Key 错误、环境变量覆盖了 yml、或（火山）model 填错。
+# Key 务必从控制台重新完整复制；YAML 里建议用双引号包住。
+#
+# SCNet 示例：base-url 无 /v1；model 为控制台模型名。
+# 火山方舟示例：base-url: https://ark.cn-beijing.volces.com/api/v3（勿带 /chat/completions）
+#              api-key、model（ep-...）见控制台；若 Java Connect timed out 且堆栈有 SocksSocketImpl、curl 却正常：direct-connection: true
+
+forum:
+  llm:
+    enabled: true
+    api-key: "在此粘贴完整密钥"
+    base-url: https://api.scnet.cn/api/llm
+    model: DeepSeek-R1-Distill-Qwen-7B

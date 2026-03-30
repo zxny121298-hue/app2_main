@@ -1,0 +1,41 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.fleet/
+.vscode/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Frontend: Nuxt / Node
+frontend/node_modules/
+frontend/.nuxt/
+frontend/.output/
+frontend/.data/
+frontend/.nitro/
+frontend/.cache/
+frontend/dist/
+frontend/coverage/
+
+# Backend: Maven / Java
+backend/target/
+backend/.maven-home/
+*.class
+# 本地密钥（勿提交）
+backend/src/main/resources/application-local.yml
+
+# Temp files
+tmp/
+*.tmp
+*.temp
