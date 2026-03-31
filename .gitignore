@@ -4,6 +4,10 @@ Thumbs.db
 .idea/
 .fleet/
 .vscode/
+*.iml
+.project
+.classpath
+.settings/
 
 # Logs
 logs/
@@ -17,6 +21,12 @@ yarn-error.log*
 .env
 .env.*
 !.env.example
+
+# Python virtual env / cache (课程要求常见项)
+venv/
+.venv/
+__pycache__/
+*.pyc
 
 # Frontend: Nuxt / Node
 frontend/node_modules/
@@ -32,6 +42,12 @@ frontend/coverage/
 backend/target/
 backend/.maven-home/
 *.class
+
+# Generic build artifacts
+dist/
+build/
+out/
+
 # 本地密钥（勿提交）
 backend/src/main/resources/application-local.yml
 
